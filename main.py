@@ -1,6 +1,18 @@
+import random
 MAX_LINES=5 
 MAX_BET=10000
 MIN_BET=10
+
+ROWS = 4
+COLS = 4
+
+symbols_count ={
+    "A":2,
+    "B":4,
+    "C":6,
+    "D":8
+def get_slot_machine_spin(rows,cols,symbols):
+    
 def deposit ():
     while True:
         amount=input("What would you like to deposit? ksh")
@@ -40,7 +52,11 @@ def main():
       balance=deposit()
       lines = get_number_of_lines()
       print(balance,lines)
+    while True:
       bet=get_bet()
       total_bet=lines*bet
+        if total_bet > balance:
+            print(f"insufficient balance your balance is Ksh{balance}")
+        else: break
       print(f"You are betting {bet} on {lines} lines youre total bet is equal :ksh{total_bet}")
 main()
