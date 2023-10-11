@@ -22,10 +22,17 @@ for _ in range(cols):
     column = []
     current_symbols = all_symbols[:]
     for _ in range(rows):
-        value = random.choice(all_symbols)
+        value = random.choice(current_symbols)
         current_symbols.remove(value)
         column.append(value)
     columns.append(column)
+    return columns
+def print_slot_machine(columns):
+    for row in range(len(columns[0])): /*transposing*/
+        for column in columns:
+            print(column[row], "|")
+        else:
+             print(column[row])
 def deposit ():
     while True:
         amount=input("What would you like to deposit? ksh")
@@ -72,4 +79,6 @@ def main():
             print(f"insufficient balance your balance is Ksh{balance}")
         else: break
       print(f"You are betting {bet} on {lines} lines youre total bet is equal :ksh{total_bet}")
+      slot=get_slot_machine_spin(ROWS,COLS,symbol_count)
+      print_slot_machine(slots)
 main()
