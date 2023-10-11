@@ -11,6 +11,26 @@ symbols_count ={
     "B":4,
     "C":6,
     "D":8
+}
+symbols_value ={
+    "A":5,
+    "B":4,
+    "C":3,
+    "D":2
+}
+def check_winnings(columns, lines, bet, values):
+    winnings = 0
+    winning_lines = []
+    for line in range(lines):
+        symbol=column[0][line]
+        for column in columns:
+            symbol_to_check = column[line]
+            if symbol ! = symbol_to_check:
+                break
+            else:
+                winnings+=value[symbol] *bet
+                winning_lines.append ( line +1)
+    return winnings, winning_lines
 def get_slot_machine_spin(rows,cols,symbols):
    all_symbols = []
    for symbol,symbol_count in symbols.items(): 
@@ -30,9 +50,10 @@ for _ in range(cols):
 def print_slot_machine(columns):
     for row in range(len(columns[0])): /*transposing*/
         for column in columns:
-            print(column[row], "|")
+            print(column[row], end=" | ")
         else:
-             print(column[row])
+             print(column[row], end="")
+        print()
 def deposit ():
     while True:
         amount=input("What would you like to deposit? ksh")
@@ -43,11 +64,12 @@ def deposit ():
             else:
                 print("Amount should be more than 0")
         else: print ("Error ! Amount should be in digits") 
-    return amount
-deposit()  
+    return amount                                                                                                                                                                                                                                                                                                                                        
+ 
+deposit()
 def get_number_of_lines(): 
     while True:
-        lines=input("how many times would you like to bet (1-"+str (MAX_LINES)+")?")
+        lines=input("how many times would you like to bet on each line (1-"+str (MAX_LINES)+")?")
         if lines.isdigit():
             lines=int(lines)
             if 1 <=lines<=MAX_LINES:
@@ -68,10 +90,9 @@ def get_bet():
                 print(f"Amount must be between {MIN_BET}-{MAX_BET}")
         else: print ("Error ! Amount should be in digits") 
     return amount
-def main():
-      balance=deposit()
-      lines = get_number_of_lines()
-      print(balance,lines)
+def spin(balance):
+     lines = get_number_of_lines()
+    
     while True:
       bet=get_bet()
       total_bet=lines*bet
@@ -81,4 +102,21 @@ def main():
       print(f"You are betting {bet} on {lines} lines youre total bet is equal :ksh{total_bet}")
       slot=get_slot_machine_spin(ROWS,COLS,symbol_count)
       print_slot_machine(slots)
+      winnings,winning_lines  = check_winnings(slots, lines, bet, symbol_value)
+      print(f"You won ksh{winnings})
+      print(f"You won on lines:", *winning_lines)
+      return winnings_lines - total_bet
+    
+ def main():
+      balance = deposit()
+      While True:
+      print(f"current balance is Ksh{balance}")
+      answer = input("Press enter to spin (q to quit).")
+      if answer = ="q"
+         break
+      balance +=spin(balance)
+ Print(f"You are left with  Ksh{balance}")
+      
+ 
+     
 main()
